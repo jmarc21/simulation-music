@@ -53,4 +53,4 @@ function mapDispatchToProps(){
         addSong: addSong
     }
 }
-export default connect(mapStateToProps, { getUserInfo, addSong })(Home);
+export default connect(mapStateToProps, mapDispatchToProps, { getUserInfo, addSong })(Home);
