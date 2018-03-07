@@ -15,10 +15,16 @@ class Home extends Component {
         await this.props.getUserInfo()
         console.log(this.props.user)
     }
+    addToSes(){
+        axios.post('/api/adding-to-session').then(res => {
+            console.log(res)
+        })
+    }
     render() {
         return (
             <div>
                 <Link to='/details'><div>details</div></Link>
+                <div onClick={() => this.addToSes()}>sessions</div>
             </div>
         )
     }

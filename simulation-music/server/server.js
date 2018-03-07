@@ -6,9 +6,26 @@ const express = require('express')
     , cors = require('cors')
     , axios = require('axios');
 
+const middle = require('./middleware')
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+    //75C
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: true}
+}))
+    //75F
+app.post('/api/adding-to-session', (req,res) => {
+    req.session.text = {
+        text: 'i made it'
+    }
+    console.log(req.session)
+})
+
                             //83C
 app.use(function (req, res, next) {
     console.log('Time:', Date.now())
@@ -24,13 +41,14 @@ app.use(function (req, res, next) {
 massive(process.env.CONNECTION_STRING).then((db) => {
     app.set('db', db);
 })
-
-app.post('/api/register-user', (req, res) => {
+                                    //75D 
+app.post('/api/register-user', middle.middle, (req, res) => {
     const { username, password } = req.body
     const db = app.get('db');
     db.create_user([
         username,
         password
+        //83E
     ]).then(resp => {
         res.status(200).send('User Registered')
     })
