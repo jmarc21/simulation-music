@@ -4,7 +4,7 @@ export default function Details(props) {
     return (
         //38C 38D when you click edit it fills in the inputs to the previous values
         <div className='menuList'>
-            hello im the songs details 
+            details
         </div>
     )
 }
