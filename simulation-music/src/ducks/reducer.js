@@ -26,7 +26,7 @@ export function getUserInfo() {
         payload: promise
     }
 }
-export function AddSong(song) {
+export function addSong(song) {
     return {
         type: GET_SETSONG,
         payload: song

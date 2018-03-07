@@ -9,8 +9,10 @@ class Home extends Component {
     constructor(){
         super();
         this.state = {
-            songName: '',
-            songDesc: ''
+            song: {
+                songName: '',
+                songDesc: ''
+            }
         }
     }
     async componentDidMount(){
@@ -22,8 +24,8 @@ class Home extends Component {
             console.log(res)
         })
     }
-    addSong(){
-        this.props.addSong;
+    onclick(){
+        this.props.store.dispatch(addSong(this.state.song));
     }
     render() {
         return (
@@ -34,7 +36,7 @@ class Home extends Component {
                 <br/>
                 <input type="text"/>
                 <input type="text"/>
-                <button onClick={() => this.AddSong()}>Add song</button>
+                <button onClick={(event) => this.onclick(event)}>Add song</button>
             </div>
         )
     }
@@ -46,9 +48,9 @@ function mapStateToProps(state) {
     }
 }
 //43J
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(){
     return{
-        addSong: this.state.songName
+        addSong: addSong
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps, { getUserInfo })(Home);
+export default connect(mapStateToProps, { getUserInfo, addSong })(Home);
