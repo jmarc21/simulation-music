@@ -28,7 +28,7 @@ export default class Login extends Component {
         axios.post('/api/register-user', user).then( res => {
             console.log(res)
             if(res.data === 'User Registered'){
-                window.location = 'http://localhost:3000/home'
+                window.location = 'http://localhost:3000/user'
             }
         })
     }

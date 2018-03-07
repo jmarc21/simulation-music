@@ -17,6 +17,7 @@ app.use(function (req, res, next) {
     //83F
 }, function(req,res,next){
     console.log('i hit the next')
+    next()
 })
 
 
